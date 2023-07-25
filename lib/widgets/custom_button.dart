@@ -4,6 +4,16 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return               Container(
+        height: 50,
+        width: double.infinity,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            color: Colors.white ,
+
+            borderRadius: BorderRadius.circular(5)
+        ),
+        child: Text("Sign in"))
+    ;
   }
 }
