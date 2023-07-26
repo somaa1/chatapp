@@ -10,11 +10,11 @@ class CustomeField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: hintString,
-        hintStyle: TextStyle(color: Colors.white),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+        hintStyle: const TextStyle(color: Colors.white),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white,width: 2),
         ),
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
       ),
