@@ -1,14 +1,20 @@
 import 'package:chatapp/core/routes/routes.dart';
 import 'package:chatapp/pages/Register_page.dart';
+import 'package:chatapp/pages/chat_page.dart';
 import 'package:chatapp/pages/login_page.dart';
 import 'package:chatapp/widgets/custom_button.dart';
 import 'package:chatapp/widgets/custom_text_field.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'firebase_options.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -19,10 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: routes.Login,
       routes: {
-        routes.Login :(context)=> const Login(),
-        routes.Register :(context)=> const Register()
+        routes.Login :(context)=>  Login(),
+        routes.Register :(context)=> Register(),
+        routes.Chat :(context)=> ChatPage()
       },
-      home: Login(),
     );
   }
 }
