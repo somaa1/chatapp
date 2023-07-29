@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
-class CustomeField extends StatelessWidget {
+class CustomFormField extends StatelessWidget {
   String? hintString;
+  Function(String)? onChanged;
 
-  CustomeField({this.hintString});
+  CustomFormField({required this.hintString, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (data) {
+        if (data!.isEmpty) {
+          return 'data cant be empty';
+        }
+      },
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintString,
         hintStyle: const TextStyle(color: Colors.white),
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white,width: 2),
+          borderSide: BorderSide(color: Colors.white, width: 2),
         ),
         border: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
