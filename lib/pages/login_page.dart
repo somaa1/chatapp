@@ -91,13 +91,14 @@ class _LoginState extends State<Login> {
                       try {
                         await LoginUser();
                         ShowSnackBar(context, 'suscees');
+                        Navigator.pushNamed(context, routes.Chat);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           ShowSnackBar(context,
                               'No user found for that email.');
                         } else if (e.code == 'wrong-password') {
                           ShowSnackBar(
-                              context, 'rong password provided for that user.');
+                              context, ' wrong password provided for that user.');
                         }
                       } catch (e) {
                         ShowSnackBar(context, '$e');

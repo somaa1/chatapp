@@ -94,6 +94,7 @@ class _RegisterState extends State<Register> {
                       try {
                         await RegisterUser();
                         ShowSnackBar(context, 'createdSuccessfully');
+                        Navigator.pushNamed(context, routes.Chat);
 
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'weak-password') {

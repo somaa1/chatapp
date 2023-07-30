@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: routes.Login,
+      initialRoute: routes.Chat,
       routes: {
         routes.Login :(context)=>  Login(),
         routes.Register :(context)=> Register(),
