@@ -75,6 +75,7 @@ class _LoginState extends State<Login> {
                   height: 13,
                 ),
                 CustomFormField(
+                  obscureText: true,
                   hintString: 'Password', onChanged: (data) {
                   password = data;
                 },
@@ -91,7 +92,7 @@ class _LoginState extends State<Login> {
                       try {
                         await LoginUser();
                         ShowSnackBar(context, 'suscees');
-                        Navigator.pushNamed(context, routes.Chat);
+                        Navigator.pushNamed(context, routes.Chat,arguments: email.toString());
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           ShowSnackBar(context,

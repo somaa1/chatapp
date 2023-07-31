@@ -127,7 +127,7 @@ class _RegisterState extends State<Register> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.pushNamed(context, routes.Login);
                       },
                       child: const Text(
                         " Login",
