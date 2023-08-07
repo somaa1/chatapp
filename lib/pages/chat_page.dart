@@ -23,11 +23,7 @@ class _ChatPageState extends State<ChatPage> {
       FirebaseFirestore.instance.collection(KMessageCollection);
   TextEditingController controller = TextEditingController();
 
-  @override
-  void initState() {
-    print(FirebaseAuth.instance.currentUser?.email.toString());
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {

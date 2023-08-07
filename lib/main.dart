@@ -28,38 +28,38 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var isLogin = false;
   var auth = FirebaseAuth.instance;
+  //
+  // cheakIfLogin() async {
+  //   auth.authStateChanges().listen((User? user) {
+  //     if (user != null) {
+  //       setState(() {
+  //         isLogin = true;
+  //       });
+  //       print('User is currently signed out!');
+  //     } else {
+  //       print('User is signed in!');
+  //     }
+  //   });
+  // }
 
-  cheakIfLogin() async {
-    auth.authStateChanges().listen((User? user) {
-      if (user != null) {
-        setState(() {
-          isLogin = true;
-        });
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    cheakIfLogin();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   cheakIfLogin();
+  //   super.initState();
+  // }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
+initialRoute: routes.Login,
       routes: {
         routes.Login: (context) => Login(),
         routes.Register: (context) => Register(),
         routes.Chat: (context) => ChatPage()
       },
-      home: isLogin ? ChatPage() :Login() ,
+
     );
   }
 }
