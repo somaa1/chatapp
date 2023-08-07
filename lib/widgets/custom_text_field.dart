@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class CustomFormField extends StatelessWidget {
   String? hintString;
   Function(String)? onChanged;
-bool? obscureText;
-  CustomFormField({required this.hintString, this.onChanged, this.obscureText = false});
+  bool? obscureText;
+
+  CustomFormField(
+      {required this.hintString, this.onChanged, this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {

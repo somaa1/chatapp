@@ -68,17 +68,20 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 17,
                 ),
-                CustomFormField(hintString: "Email", onChanged: (data) {
-                  email = data;
-                }),
+                CustomFormField(
+                    hintString: "Email",
+                    onChanged: (data) {
+                      email = data;
+                    }),
                 SizedBox(
                   height: 13,
                 ),
                 CustomFormField(
                   obscureText: true,
-                  hintString: 'Password', onChanged: (data) {
-                  password = data;
-                },
+                  hintString: 'Password',
+                  onChanged: (data) {
+                    password = data;
+                  },
                 ),
                 SizedBox(
                   height: 13,
@@ -92,28 +95,24 @@ class _LoginState extends State<Login> {
                       try {
                         await LoginUser();
                         ShowSnackBar(context, 'suscees');
-                        Navigator.pushNamed(context, routes.Chat,arguments: email.toString());
+                        Navigator.pushNamed(context, routes.Chat,
+                            arguments: email.toString());
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
-                          ShowSnackBar(context,
-                              'No user found for that email.');
-                        } else if (e.code == 'wrong-password') {
                           ShowSnackBar(
-                              context, ' wrong password provided for that user.');
+                              context, 'No user found for that email.');
+                        } else if (e.code == 'wrong-password') {
+                          ShowSnackBar(context,
+                              ' wrong password provided for that user.');
                         }
                       } catch (e) {
                         ShowSnackBar(context, '$e');
                       }
 
                       isloading = false;
-                      setState(() {
-
-                      });
-                    } else {
-
-                    }
+                      setState(() {});
+                    } else {}
                   },
-
                 ),
                 SizedBox(
                   height: 17,
@@ -132,7 +131,7 @@ class _LoginState extends State<Login> {
                       child: Text(
                         " Register",
                         style:
-                        TextStyle(color: Color(0XffC5E7E5), fontSize: 19),
+                            TextStyle(color: Color(0XffC5E7E5), fontSize: 19),
                       ),
                     ),
                   ],
@@ -144,7 +143,6 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
 
   Future<void> LoginUser() async {
     UserCredential user = await auth.signInWithEmailAndPassword(

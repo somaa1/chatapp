@@ -1,4 +1,5 @@
 import 'package:chatapp/pages/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import '../constant.dart';
@@ -13,6 +14,7 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  User? user;
   final ScrollController _controller = ScrollController();
 
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -22,8 +24,14 @@ class _ChatPageState extends State<ChatPage> {
   TextEditingController controller = TextEditingController();
 
   @override
+  void initState() {
+    print(FirebaseAuth.instance.currentUser?.email.toString());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String? email = ModalRoute.of(context)!.settings.arguments as String?;
+    var email = ModalRoute.of(context)!.settings.arguments ;
 
     return StreamBuilder<QuerySnapshot>(
       stream: messages.orderBy(KCreatedAt, descending: true).snapshots(),
@@ -61,7 +69,7 @@ class _ChatPageState extends State<ChatPage> {
                           ? chatbubble(
                               message: messageslist[index],
                               send: () async {
-                                 deleteMessage(snapshot.data!.docs[index].id);
+                                deleteMessage(snapshot.data!.docs[index].id);
                               },
                             )
                           : chatbubbleforFriend(
@@ -111,7 +119,6 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-
   void deleteMessage(String messageId) {
     showDialog(
       context: context,
@@ -139,8 +146,7 @@ class _ChatPageState extends State<ChatPage> {
                     timeInSecForIosWeb: 1,
                     backgroundColor: Colors.red,
                     textColor: Colors.white,
-                    fontSize: 16.0
-                );
+                    fontSize: 16.0);
 
                 // Close the AlertDialog
               },
